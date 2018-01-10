@@ -1,0 +1,17 @@
+<p>{{details.name}}</p>
+<p>Technologies Used:<button (click)="toggleClick();">toggle</button></p>
+<ul *ngIf='isEdit;else helpText'><li *ngFor="let tech of technologies;let i=index">{{i+1}}. {{tech}}</li></ul>
+
+<!--<ul *ngIf='isEdit;then description else helpText'><li *ngFor="let tech of technologies;let i=index">{{i+1}}. {{tech}}</li></ul>-->
+<ng-template #description>These are technologies used.</ng-template>
+<ng-template #helpText><em>Click on toggle button to expand</em></ng-template>
+<p><strong>Add new Skill</strong></p>
+<div class="skillbox">
+<input class="addItem" [(ngModel)]="newItem">
+<button (click)="addItem();">Add</button>
+<ul>
+    <li *ngFor="let item of skills;let i=index">
+    {{item}} &nbsp;&nbsp;&nbsp;<span (click)=removeItem(i);>&times;</span>
+    </li>
+</ul> 
+</div>
