@@ -27,7 +27,8 @@ export class UsesComponent implements OnInit {
       octal:new FormControl(""),
       hexa:new FormControl("")
     });
-    console.log(this.newService.obj);
+    //console.log(this.newService.obj);
+    this.newService.fetchData();
   }
   numbersort=[30,87,73,100,222];
   details={
