@@ -15,3 +15,40 @@
     </li>
 </ul> 
 </div>
+<p>Filter (sort)</p>
+<p>ascending{{numbersort|filter:'ascending'}}</p>
+<p>descening{{numbersort|filter:'descending'}}</p>
+<h4>Simple form</h4>
+<form action="" class="container" #userForm="ngForm" (ngSubmit)=submitForm(userForm.value);>
+    <input type="text" name="firstname" ngModel>
+    <br>
+    <input type="text" name="lastname" ngModel>
+    <br>
+    <select name="age" ngModel>
+        <option value="16">16</option>
+        <option value="25">25</option>
+        <option value="34">34</option>
+    </select>
+    <input type="submit" name="submit">
+</form>
+<h4>Two way binding form</h4>
+<form action="" class="container" [formGroup]="form" (ngSubmit)=submitForm(form.value);>
+    <input type="text" name="firstname" formControlName="firstname">
+    <br>
+    <input type="text" name="lastname" formControlName="lastname">
+    <br>
+    <select name="age" formControlName="age">
+        <option value="16">16</option>
+        <option value="25">25</option>
+        <option value="34">34</option>
+    </select>
+    <input type="submit" name="submit" [disabled]="!form.valid">
+</form>
+
+<h4>Base converter</h4>
+<form class="container" [formGroup]='converterform'>
+<input type="text" name="decimal" formControlName="decimal" placeholder="decimal" (ngModelChange)="decimalChanged(oldvalue,newValue=$event);">
+<input type="text" name="binary" formControlName="binary" placeholder="binary" (ngModelChange)="binaryChanged(oldValue,newValue=$event)">
+<input type="text" name="octal" formControlName="octal" placeholder="octal" (ngModelChange)="octalChanged(oldValue,newValue=$event)">
+<input type="text" name="hexa" formControlName="hexa" placeholder="hexa" (ngModelChange)="hexaChanged(oldValue,newValue=$event)">
+</form>
