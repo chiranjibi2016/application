@@ -1,16 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import {trigger,state,style,transition,animate} from '@angular/animations';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
 import {DataService} from './../data.service';
+import {EmployeeService} from './../employee.service';
 @Component({
   selector: 'app-uses',
   templateUrl: './uses.component.html',
-  styleUrls: ['./uses.component.css']
+  styleUrls: ['./uses.component.css'],
+  styles:
+    [`.outerDiv{
+        margin:10px auto;
+        text-align:center;
+        width:200px;
+  }`],
+  animations:[
+    trigger('myAnimation',[
+      state('smaller',style({
+        transform:'scale(1)',
+        color:'red'
+      })),
+      state('larger',style({
+        transform:'scale(2)',
+        color:'green'
+      })),
+      transition('smaller<=>larger',animate('300ms ease-in'))
+    ])
+  ]
 })
 export class UsesComponent implements OnInit {
 
-  constructor(private newService:DataService) { }
+  constructor(private newService:DataService,private empService:EmployeeService) { }
   form;
   converterform;
+  state:string='smaller';
   ngOnInit() {
     this.form=new FormGroup({
       firstname:new FormControl('Chiranjibi',Validators.compose([
@@ -29,6 +51,9 @@ export class UsesComponent implements OnInit {
     });
     //console.log(this.newService.obj);
     this.newService.fetchData();
+    // this.employeeDetails=[{"id":"1","name":"11"},{"id":"2","name":"2"}];
+    this.empService.getEmployee();
+
   }
   numbersort=[30,87,73,100,222];
   details={
@@ -109,5 +134,8 @@ hexaChanged=function(oldvalue,newValue){
   }
 }
 
+animate(){
+  this.state = this.state == 'larger'?'smaller':'larger';
+}
 
 }

@@ -52,3 +52,7 @@
 <input type="text" name="octal" formControlName="octal" placeholder="octal" (ngModelChange)="octalChanged(oldValue,newValue=$event)">
 <input type="text" name="hexa" formControlName="hexa" placeholder="hexa" (ngModelChange)="hexaChanged(oldValue,newValue=$event)">
 </form>
+<div class="outerDiv">
+    <button (click)="animate()">Click Me</button>
+    <p [@myAnimation]="state">Text</p>
+</div>

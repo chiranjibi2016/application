@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UsesComponent } from './uses/uses.component';
 import { FilterPipe } from './filter.pipe';
 import {DataService} from './data.service';
+import{EmployeeService} from './employee.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {DataService} from './data.service';
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([{
@@ -41,7 +44,7 @@ import {DataService} from './data.service';
       component:UsesComponent
     }])
   ],
-  providers: [DataService],
+  providers: [DataService,EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
